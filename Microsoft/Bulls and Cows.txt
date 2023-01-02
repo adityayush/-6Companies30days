@@ -1,0 +1,22 @@
+
+
+class Solution {
+public:
+    string getHint(string secret, string guess) {
+        unordered_map<char,int>um;
+        int bulls=0,cows=0;
+        
+        for(int i=0;i<secret.length();i++){
+            if(secret[i]==guess[i])bulls++;
+            else{
+// if secret character has been accessed earlier then it must have decremented count in um and if it is then cows++. Also increment this count. 
+// if guess charcater has been accessed earlier then it must have incremented count in um and if it is then cows++. Also decrement this count. 
+                if(um[secret[i]]++<0)cows++;
+                if(um[guess[i]]-->0)cows++;
+                
+            }
+        }
+        
+        return (to_string(bulls)+"A"+to_string(cows)+"B");
+    }
+};
